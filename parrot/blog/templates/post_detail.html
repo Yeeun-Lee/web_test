@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}post_detail{% endblock %}
+
+{% block content %}
+
+<table class="table table-striped table-bordered">
+	<tr>
+		<th>번호</th>
+		<td>{{ post.pk }}</td>
+	</tr>
+	<tr>
+		<th>제목</th>
+		<td>{{ post.title }}</td>
+	</tr>
+	<tr>
+		<th>내용</th>
+		<td>{{ post.content }}</td>
+	</tr>
+    <tr>
+		<th>작성자</th>
+		<td>{{ post.writer }}</td>
+	</tr>
+    <tr>
+		<th>최종수정일</th>
+		<td>{{ post.modify_date }}</td>
+	</tr>
+</table>
+{% endblock %}

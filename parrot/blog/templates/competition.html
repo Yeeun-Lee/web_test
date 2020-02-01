@@ -1,0 +1,33 @@
+<!-- 예시 -->
+{% extends 'base.html'%}
+{% block title %}Competition{% endblock %}
+
+{% block content %}
+<div class="container" id="content">
+	<div class="row">
+		<table class="table table-striped" style="text-align: center; border:1px solid #dddddd;">
+			<thead>
+				<tr>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">번호</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">작성자</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">제출일</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">rank</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for notice in notices.all %}
+				<tr>
+					<td class="ng">{{submission.id}}</td>
+                    <td class="ng">{{submission.user</td>
+					<td class="ng">{{submission.submission_time}}</td>
+					<td class="ng">{{notice.user.user_ranking}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+        <a href="{% url 'submit' %}" class="btn btn-dark pull-right">제출</a>
+	</div>
+
+
+</div>
+{% endblock %}

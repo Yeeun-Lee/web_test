@@ -1,0 +1,32 @@
+<!-- 예시 -->
+{% extends 'base.html'%}
+{% block title %}Notice{% endblock %}
+
+{% block content %}
+<div class="container" id="content">
+	<div class="row">
+		<table class="table table-striped" style="text-align: center; border:1px solid #dddddd;">
+			<thead>
+				<tr>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">번호</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">제목</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">작성자</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">최종수정일</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for notice in notices.all %}
+				<tr>
+					<td class="ng">{{notice.id}}</td>
+					<td class="ng"><ul>
+						<a href="{% url 'notice-detail' notice.slug %}">{{notice.title}}</a></ul></td>
+					<td class="ng">{{notice.writer}}</td>
+					<td class="ng">{{notice.modify_date}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+</div>
+{% endblock %}

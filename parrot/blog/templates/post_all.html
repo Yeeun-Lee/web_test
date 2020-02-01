@@ -1,0 +1,33 @@
+<!-- 예시 -->
+{% extends 'base.html'%}
+{% block title %}Post all{% endblock %}
+
+{% block content %}
+<div class="container" id="content">
+	<div class="row">
+		<table class="table table-striped" style="text-align: center; border:1px solid #dddddd;">
+			<thead>
+				<tr>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">번호</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">제목</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">작성자</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">최종수정일</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for post in posts.all %}
+				<tr>
+					<td class="ng">{{post.id}}</td>
+					<td class="ng"><ul>
+						<a href="{% url 'post-detail' post.slug %}">{{post.title}}</a></ul></td>
+					<td class="ng">{{post.writer}}</td>
+					<td class="ng">{{post.modify_date}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="{% url 'new' %}" class="btn btn-dark pull-right">제출</a>
+	</div>
+
+</div>
+{% endblock %}
