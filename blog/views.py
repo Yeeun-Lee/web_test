@@ -13,11 +13,9 @@ from .func import run_file
 from .forms import FileForm
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'index.html')
 def about(request):
     return render(request, 'about.html')
-def contact(request):
-	return render(request, 'contact.html')
 # List View
 class PostLV(ListView):
     model = Post
