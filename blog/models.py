@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 import string
 import random
-from six import python_2_unicode_compatible
+
 
 from django.db import models
 from django.template.defaultfilters import slugify
