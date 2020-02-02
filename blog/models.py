@@ -6,7 +6,7 @@ import random
 
 from django.db import models
 from django.template.defaultfilters import slugify
-from django_extensions.db.fields import RandomCharField
+
 # for url pattern
 from django.urls import reverse
 # Create your models here.
