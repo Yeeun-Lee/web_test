@@ -60,16 +60,12 @@ class Notice(models.Model):
     def get_next_post(self):
         return self.get_next_by_modify_date()
     def save(self, *args, **kwargs):
-        self.slug = self.slug or slugify(self.title)
+        self.slug = self.slug or ssslugify(self.title)
         super().save(*args, **kwargs)
-class User(models.Model):
-    user_name = models.CharField(max_length=100)
-    user_ranking = models.IntegerField(default=0)
-    def __str__(self):
-        return self.user_name
+
 class Submission(models.Model):
-    user_name = models.CharField(max_length=100)
-    user_ranking = models.IntegerField(default=0)
+    user_name = models.CharField(max_length=100, default = 'parrotadmin')
+    user_ranking = models.FloatField(default=0)
     submission_file = models.FileField(upload_to='documents/',
                                        default=None)
     submission_status = models.CharField(max_length=50)

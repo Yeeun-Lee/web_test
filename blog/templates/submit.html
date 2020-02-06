@@ -1,20 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if user.is_authenticated %}
-<div class="container">
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <p>{{form.non_field_errors}}</p>
-        <p>{{form.csvfile}}{{form.csvfile.help_text</p>
-        <p>
-            {{form.csvfile.errors}}
-            {{form.csvfile}
-        </p>
-        <p>
-            <input type="submit" value="Upload"/>
-        </p>
-    </form>
+<!--<div class="container">-->
+<!--    <form action="{% url 'submit' %}" method="post" enctype="multipart/form-data">-->
+<!--        {% csrf_token %}-->
+<!--        <input type="file" name = "csvfile"><br/><br/>-->
+<!--        <input type="submit" value="Upload">-->
+<!--    </form>-->
+<!--</div>-->
+<form action="{% url 'submit' %}" method="post" enctype="multipart/form-data" class = "form-horizontal">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for = "name" class = 'col-md-3 col-sm-3 col-xs-12 control-label'>
+            File :
+        </label>
+        <div class="col-md-8">
+            <input type="file" name = "csvfile" id="csv-file" required="True" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+         <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+    </div>
 </div>
-{% else %}
+</form>
 {% endif %}
 {% endblock %}

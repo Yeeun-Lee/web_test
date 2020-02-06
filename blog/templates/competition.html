@@ -15,17 +15,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for notice in notices.all %}
+				{% for submission in submissions.all %}
 				<tr>
 					<td class="ng">{{submission.id}}</td>
-                    <td class="ng">{{submission.user</td>
+                    <td class="ng">{{submission.user_name}}</td>
 					<td class="ng">{{submission.submission_time}}</td>
-					<td class="ng">{{notice.user.user_ranking}}</td>
+					<td class="ng">{{submission.user_ranking}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
 		</table>
-        <a href="{% url 'submit' %}" class="btn btn-dark pull-right">제출</a>
+        <a href="{% url 'sub_page' %}" class="btn btn-dark pull-right">제출</a>
 	</div>
 
 
