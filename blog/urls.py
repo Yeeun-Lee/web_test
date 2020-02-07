@@ -2,8 +2,8 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.conf.urls import include, url
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf import settings
+# from django.conf.urls.static import static
 urlpatterns = [
     # Example : /
     url(r'^$', views.PostLV.as_view(), name = 'post-list'),
@@ -22,6 +22,3 @@ urlpatterns = [
     path('submission/', views.sub_page, name = 'sub_page'),
     path('uploadfile/',views.new_submission, name = 'submit'),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,
-                          document_root=settings.MEDIA_ROOT)

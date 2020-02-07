@@ -5,6 +5,8 @@ import random
 # from six import python_2_unicode_compatible
 
 from django.db import models
+from django import forms
+
 from django.template.defaultfilters import slugify
 
 # for url pattern
@@ -68,7 +70,6 @@ class Submission(models.Model):
     user_ranking = models.FloatField(default=0)
     submission_file = models.FileField(upload_to='documents/',
                                        default=None)
-    submission_status = models.CharField(max_length=50)
     submission_time = models.DateTimeField('Submission Date', auto_now_add=True)
 
     class Meta:
@@ -76,3 +77,9 @@ class Submission(models.Model):
         verbose_name_plural = 'submissions'
         db_table = 'parrot_con'
         ordering = ('-user_ranking',)
+class FileForm(forms.Form):
+    title = forms.CharField(max_length = 100)
+    csvfile = forms.FileField(
+        label = 'Select a file',
+        help_text='only csv file(ex/prediction)'
+    )

@@ -1,8 +1,9 @@
-from django import forms
+from .models import Submission
 
-class FileForm(forms.Form):
-    title = forms.CharField(max_length = 100)
-    csvfile = forms.FileField(
-        label = 'Select a file',
-        help_text='only csv file(ex/prediction'
-    )
+# class FileForm(forms.Form):
+#     class Meta:
+#         model = Submission
+#         fields = ('submission_file')
+#     def __init__(self, *args, **kwargs):
+#         super(FileForm, self).__init__(*args, **kwargs)
+#         self.fields['submission_file'].required = False

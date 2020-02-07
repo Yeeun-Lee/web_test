@@ -8,9 +8,9 @@ from django.utils import timezone
 from django.template import loader
 from django.views.generic import ArchiveIndexView, YearArchiveView, MonthArchiveView
 
-from .models import Post, Notice, Submission
+from .models import Post, Notice, Submission, FileForm
 from .func import run_file
-from .forms import FileForm
+
 
 import pandas as pd
 import sklearn
@@ -78,30 +78,30 @@ def create(request):
 	post.content = request.GET['content']
 	post.create_date = timezone.datetime.now()
 	post.save()
-	return redirect('home')
+	return redirect('post-list')
 
 @login_required
 def new_submission(request):
-    form = FileForm()
+    # form = FileForm()
     if request.method == 'POST':
         form = FileForm(request.POST, request.FILES)
         if form.is_valid():
-            newfile = Submission(submission_file = request.FILES['csvfile'])
+            newfile = Submission(submission_file = request.FILES['submission_file'])
             newfile.save()
             submission_number = Submission.objects.last().id + 1
             # run_file(request.FILES['submission_file'])
             # template = loader.get_template('submit.html')
-            context = {
-                'submission_number':submission_number,
-            }
-            csvfile = pd.read_csv(newfile.submission_file)
+            # context = {
+            #     'submission_number':submission_number,
+            # }
+            csvfile = pd.read_csv('file/documents/prediction.csv', engine = 'python')
             newfile.user_ranking  = scoring(csvfile)
 
-            return redirect('competition')
+            return HttpResponseRedirect(reverse('competition'))
     else:
         form = FileForm()
-    return render(request, 'competition.html', {'form':form})
 
+    return render(request, 'competition.html', {'form':form})
 @login_required
 def sub_page(request):
     return render(request, 'submit.html')
@@ -114,8 +114,8 @@ class CompetitionLV(ListView):
 
 def scoring(csvfile):
 
-    predict = pd.read_csv(prediction, engine='python')
-    actual = pd.read_csv(actual, engine='python')
+    predict = csvfile
+    actual = pd.read_csv('file/documents/actual.csv', engine='python')
 
     predict.id = predict.id.astype('int')
     predict = predict.sort_values(by = ['id'], axis=0)
@@ -134,7 +134,7 @@ def scoring(csvfile):
 
     score = accuracy_score(label_actual, label_pred)
 
-    print(score * 100, "%")
+    return score
 
 
 

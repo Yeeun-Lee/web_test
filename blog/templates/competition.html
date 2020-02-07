@@ -8,16 +8,16 @@
 		<table class="table table-striped" style="text-align: center; border:1px solid #dddddd;">
 			<thead>
 				<tr>
-					<th class="ng" style="background-color: #eeeeee;text-align: center;">번호</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">Rank</th>
 					<th class="ng" style="background-color: #eeeeee;text-align: center;">작성자</th>
 					<th class="ng" style="background-color: #eeeeee;text-align: center;">제출일</th>
-					<th class="ng" style="background-color: #eeeeee;text-align: center;">rank</th>
+					<th class="ng" style="background-color: #eeeeee;text-align: center;">score</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for submission in submissions.all %}
 				<tr>
-					<td class="ng">{{submission.id}}</td>
+					<td class="ng">{{forloop.counter}}</td>
                     <td class="ng">{{submission.user_name}}</td>
 					<td class="ng">{{submission.submission_time}}</td>
 					<td class="ng">{{submission.user_ranking}}</td>
